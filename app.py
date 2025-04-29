@@ -6,7 +6,13 @@ from config import Config
 # Create Flask app
 app = Flask(__name__)
 app.secret_key = Config.SECRET_KEY
-CORS(app, supports_credentials=True)
+
+# Configure CORS
+CORS(app, 
+     resources={r"/*": {"origins": "http://localhost:3000"}},
+     supports_credentials=True,
+     allow_headers=["Content-Type", "Authorization"],
+     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"])
 
 # Decorators
 def login_required(f):
@@ -35,7 +41,7 @@ app.register_blueprint(user_bp)
 
 if __name__ == '__main__':
     app.run(
-        host=Config.FLASK_HOST,
-        port=int(Config.FLASK_PORT),
-        debug=Config.FLASK_DEBUG == '1'
+        host='0.0.0.0',  # Allow connections from any IP
+        port=5000,       # Use port 5000
+        debug=True       # Enable debug mode
     )
