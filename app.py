@@ -41,7 +41,7 @@ app.register_blueprint(user_bp)
 
 if __name__ == '__main__':
     app.run(
-        host='0.0.0.0',  # Allow connections from any IP
-        port=5000,       # Use port 5000
-        debug=True       # Enable debug mode
-    )
+        host=Config.FLASK_HOST,
+        port=int(Config.FLASK_PORT),
+        debug=Config.FLASK_DEBUG == '1'
+    ) 
