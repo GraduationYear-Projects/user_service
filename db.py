@@ -1,5 +1,6 @@
 from pymongo import MongoClient
+from config import Config
 
 # Setup MongoDB
-client = MongoClient("mongodb://localhost:27017/")
-db = client["Cloud"] 
+client = MongoClient(Config.MONGODB_URI)
+db = client[Config.MONGODB_DB] 
