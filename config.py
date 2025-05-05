@@ -1,20 +1,17 @@
-import os
 from dotenv import load_dotenv
+import os
 
-# Load environment variables from .env file
-load_dotenv()
+env_file = os.getenv('ENV_FILE', '.env')
+
+if os.path.exists(env_file):
+    load_dotenv(env_file)
 
 class Config:
-    # MongoDB Configuration
     MONGODB_URI = os.getenv('MONGODB_URI')
     MONGODB_DB = os.getenv('MONGODB_DB')
-    
-    # Flask Configuration
     FLASK_APP = os.getenv('FLASK_APP')
     FLASK_ENV = os.getenv('FLASK_ENV')
     FLASK_DEBUG = os.getenv('FLASK_DEBUG')
     FLASK_HOST = os.getenv('FLASK_HOST')
     FLASK_PORT = os.getenv('FLASK_PORT')
-    
-    # Security
-    SECRET_KEY = os.getenv('SECRET_KEY') 
+    SECRET_KEY = os.getenv('SECRET_KEY')
