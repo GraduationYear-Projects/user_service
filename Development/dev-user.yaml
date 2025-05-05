@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev-user-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dev-user-service
+  template:
+    metadata:
+      labels:
+        app: dev-user-service
+    spec:
+      containers:
+      - name: dev-user-service
+        image: dev_user_service:latest
+        envFrom:
+        - configMapRef:
+            name: dev-mongo
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dev-user-service
+spec:
+  type: NodePort
+  selector:
+    app: dev-user-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+      nodePort: 30001

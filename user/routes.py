@@ -14,8 +14,10 @@ def signup():
 def signout():
     return User().signout()
 
-@user_bp.route('/api/login/', methods=['POST'])
+@user_bp.route('/api/login/', methods=['POST', 'OPTIONS'])
 def login():
+    if request.method == 'OPTIONS':
+        return '', 200
     return User().login()
 
 @user_bp.route("/api/user/", methods=["GET"])

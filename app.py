@@ -7,12 +7,17 @@ from config import Config
 app = Flask(__name__)
 app.secret_key = Config.SECRET_KEY
 
-# Configure CORS
-CORS(app, 
-     resources={r"/*": {"origins": "http://localhost:3000"}},
-     supports_credentials=True,
-     allow_headers=["Content-Type", "Authorization"],
-     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"])
+# Configure CORS to allow all origins
+CORS(app, supports_credentials=True)
+
+# CORS(app, 
+#      resources={r"/api/*": {
+#          "origins": "*",
+#          "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
+#          "allow_headers": ["Content-Type", "Authorization", "X-Requested-With"],
+#          "expose_headers": ["Content-Length", "Authorization"],
+#          "max_age": 3600
+#      }})
 
 # Decorators
 def login_required(f):
@@ -44,4 +49,4 @@ if __name__ == '__main__':
         host=Config.FLASK_HOST,
         port=int(Config.FLASK_PORT),
         debug=Config.FLASK_DEBUG == '1'
-    ) 
+    )
