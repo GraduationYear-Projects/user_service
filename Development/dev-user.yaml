@@ -14,11 +14,12 @@ spec:
     spec:
       containers:
       - name: dev-user-service
-        image: dev_user_service:latest
+        image: mohamedsamir170/user-service:dev
         envFrom:
         - configMapRef:
-            name: dev-mongo
-
+            name: user-service-config
+        ports:
+        - containerPort: 5000
 
 ---
 apiVersion: v1
