@@ -16,6 +16,7 @@ spec:
       containers:
       - name: test-user-service
         image: mohamedsamir170/user-service:test
+        imagePullPolicy: Always
         envFrom:
         - configMapRef:
             name: insta-pay-config-test

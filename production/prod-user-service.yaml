@@ -16,6 +16,7 @@ spec:
       containers:
       - name: prod-user-service
         image: mohamedsamir170/user-service:latest
+        imagePullPolicy: Always
         envFrom:
         - configMapRef:
             name: insta-pay-config-prod
