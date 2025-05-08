@@ -19,7 +19,7 @@ class User:
       "name": data.get('name'),
       "email": data.get('email'),
       "password": data.get('password'),
-      "balance": 0.0  # Initialize balance to 0
+      "balance": 1000.0  # Initialize balance to 0
     }
 
     # Encrypt the password

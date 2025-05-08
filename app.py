@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.secret_key = Config.SECRET_KEY
 
 # Configure CORS to allow all origins
-CORS(app, supports_credentials=True)
+CORS(app, origins="*", supports_credentials=True)
 
 # CORS(app, 
 #      resources={r"/api/*": {
